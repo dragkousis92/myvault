@@ -1,27 +1,39 @@
 {
-  "name": "my-vault-2",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.0.0",
-    "@types/node": "20.4.2",
-    "@types/react": "18.2.15",
-    "@types/react-dom": "18.2.7",
-    "eslint": "8.45.0",
-    "eslint-config-next": "13.4.10",
-    "next": "13.4.10",
-    "next-auth": "^4.22.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.1.6"
-  },
-  "devDependencies": {
-    "prisma": "^5.0.0"
-  }
+    "name": "my-vault-2",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@emotion/cache": "^11.11.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/server": "^11.11.0",
+        "@emotion/styled": "^11.11.0",
+        "@monaco-editor/react": "^4.5.1",
+        "@mui/material": "^5.14.1",
+        "@mui/x-date-pickers": "^6.10.1",
+        "@prisma/client": "^5.0.0",
+        "@types/node": "20.4.2",
+        "@types/react": "18.2.15",
+        "@types/react-dom": "18.2.7",
+        "date-fns": "^2.30.0",
+        "eslint": "8.45.0",
+        "eslint-config-next": "13.4.10",
+        "next": "13.4.10",
+        "next-auth": "^4.22.3",
+        "prettier": "^3.0.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-hook-form": "^7.45.2",
+        "slugify": "^1.6.6",
+        "typescript": "5.1.6"
+    },
+    "devDependencies": {
+        "parser-babel": "link:@types/prettier/parser-babel",
+        "prisma": "^5.0.0"
+    }
 }

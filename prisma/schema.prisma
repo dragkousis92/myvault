@@ -13,22 +13,25 @@ datasource db {
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
-enum TYPE {
-  game
-  movie
-  event
-  trip
-}
 
-model Event {
+model Reminder {
   id          Int      @id @default(autoincrement())
   name        String
   description String
   slug        String   @unique
-  type        TYPE
   date        DateTime
-  reminderFrom DateTime
+  repeatDays Int? @default(0)
   active Boolean    @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model CodeBlog {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  slug        String   @unique
+  date        DateTime
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }

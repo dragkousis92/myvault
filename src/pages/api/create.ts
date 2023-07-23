@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient, Prisma } from '@prisma/client'
 import slugify from 'slugify'
 import prisma from '../../../lib/prisma'
 import { IReminderAdd } from '../reminders/add'
@@ -24,15 +23,15 @@ const createReminder = async ({
     do {
         formattedSlug = !suffix ? newSlug : `${newSlug}-${suffix}`
 
-        const existingSlug = await prisma.reminder.findFirst({
+        console.log('searching for:', formattedSlug)
+
+        const existingSlug = await prisma.reminder.findUnique({
             where: {
-                slug: {
-                    equals: newSlug,
-                },
+                slug: formattedSlug,
             },
         })
 
-        console.log(existingSlug)
+        console.log('found', existingSlug)
 
         if (!existingSlug) break
 
@@ -45,13 +44,11 @@ const createReminder = async ({
             description,
             slug: formattedSlug,
             date,
-            repeatDays,
+            repeatDays: repeatDays ? parseInt(repeatDays) : undefined,
         },
     })
 
     console.log(newEntry)
-
-    return newEntry
 }
 
 export default async function handler(
@@ -63,19 +60,20 @@ export default async function handler(
     if (req.method === 'POST') {
         // const body = JSON.parse(req.body);
         // console.log(req, query);
-        const prisma = new PrismaClient()
 
         console.log('REQUEST BODY:', req.body)
         const { name, description, date, repeatDays }: postBody = req.body
 
-        const newReminder = createReminder({
+        // const eventTypeValue: eventType = [type] as eventType;
+
+        const reminder = await createReminder({
             name,
             description,
             date,
             repeatDays,
         })
 
-        return res.status(200).json({ newReminder })
+        return res.status(200).json({ reminder })
     } else {
         return res.status(200).json({ name: 'true' })
     }
